@@ -12,6 +12,10 @@ public class playerControls : MonoBehaviour {
 		model = GetComponent<playerModel>();
 	}
 
+	void Update(){
+	
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		float dx = Input.GetAxis("Horizontal");

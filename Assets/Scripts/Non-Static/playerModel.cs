@@ -13,8 +13,6 @@ public class playerModel : MonoBehaviour, Targetable {
 
 	public int visionRange = 25;
 	public int visionWidth = 10;
-
-	public bool canSee = true;
 	public int weaponRange = 5;
 	public int weaponWidth = 10;
 
@@ -27,15 +25,28 @@ public class playerModel : MonoBehaviour, Targetable {
 	private Collider2D vision;
 	private Collider2D reach;
 
+
 	List <GameObject> targets = new List <GameObject> ();
 	List <GameObject> reachables = new List <GameObject> ();
 	List <GameObject> visables = new List <GameObject> ();
 
 
 	void Awake(){
-		vision =transform.Find("Vision").GetComponent<Collider2D>();
-		range = transform.Find("Range").GetComponent<Collider2D>();
-		reach = transform.Find("Reach").GetComponent<Collider2D>();
+		Transform v = transform.Find("Vision");
+		if (v != null){
+			vision = v.GetComponent<Collider2D>();
+		}
+
+		Transform ra =  transform.Find("Range");
+		if (ra != null){
+			range = ra.GetComponent<Collider2D>();
+		}
+
+		Transform re =  transform.Find("Reach");
+		if (ra != null){
+			reach = re.GetComponent<Collider2D>();
+		}
+
 
 		setRange(vision, visionRange, visionWidth);
 		setRange(range, weaponRange, weaponWidth);
@@ -65,20 +76,19 @@ public class playerModel : MonoBehaviour, Targetable {
 			}
 
 		}
-		if (colSource(vision, col)) {
+		if (colSource(vision, col) && col.gameObject.GetComponent<Visible>() != null) {
 			print("Can see object");
 		}
 
-		if (colSource(reach, col)) {
+		if (colSource(reach, col) && col.gameObject.GetComponent<Interactable>() != null) {
 			print("Can grab object");
 		}
 
 	}
 
 	void OnTriggerExit2D (Collider2D col) {
-		if (!colSource(range,col)) {
+		if (col.gameObject.GetComponent<Targetable>() != null) {
 			targets.Remove(col.gameObject);
-			Debug.Log("Removed object from");
 		}
 	}
 
