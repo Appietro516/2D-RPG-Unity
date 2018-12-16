@@ -2,6 +2,5 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Visible: AbstractInteractable{
-
+public interface AbstractInteractable{
 }

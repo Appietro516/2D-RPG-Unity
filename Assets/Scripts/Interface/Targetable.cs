@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Targetable{
+public interface Targetable: AbstractInteractable{
 
 }
