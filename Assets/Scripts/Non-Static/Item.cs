@@ -20,6 +20,7 @@ public class Item : MonoBehaviour,Interactable{
 	}
 
 	public void Interact(playerModel model){
+		//TODO: this does not work.
 		model.inventory.Add(this.gameObject);
 		Destroy(this.gameObject);
 
