@@ -13,6 +13,11 @@ public class playerControls : MonoBehaviour {
 	}
 
 	void Update(){
+		if (Input.GetKeyDown("space")){
+			if (model.reach.getNearest() != null){
+				model.reach.getNearest().GetComponent<Interactable>().Interact(model);
+			}
+		}
 
 	}
 
@@ -21,7 +26,7 @@ public class playerControls : MonoBehaviour {
 		float dx = Input.GetAxis("Horizontal");
 		float dy = Input.GetAxis("Vertical");
 
-		Controller.Move(dx, dy, model.speed, this.gameObject);
+		model.Move(dx, dy, model.speed);
 	}
 
 }

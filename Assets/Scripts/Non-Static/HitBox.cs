@@ -32,27 +32,23 @@ public class HitBox : MonoBehaviour{
 
 
 	void OnTriggerEnter2D (Collider2D col) {
-		addItem(col, box, lis);
+		addItem(col);
 	}
 
 	void OnTriggerExit2D (Collider2D col) {
-		lis.Remove(col.gameObject);
-		print("removed obj");
+		if (isType((col.gameObject.GetComponent<AbstractInteractable>()))){
+			lis.Remove(col.gameObject);
+			print("removed obj");
+		}
 	}
 
-	private bool colSource(Collider2D source, Collider2D col){
-		return source != null && source.IsTouching(col);
-	}
-
-	private void addItem(Collider2D col, Collider2D source, List <GameObject> lis){
-		if (colSource(source, col) && col.gameObject.GetComponent<AbstractInteractable>() != null) {
-			if (col.gameObject.GetComponent<AbstractInteractable>().GetType().GetInterfaces().Contains(type)){
-				if(!(lis.Contains(col.gameObject))){
-					lis.Add(col.gameObject);
-					Debug.Log("Added Object");
-				} else{
-					Debug.Log("Already in targets");
-				}
+	private void addItem(Collider2D col){
+		if(isType(col.gameObject.GetComponent<AbstractInteractable>())){
+			if(!(lis.Contains(col.gameObject))){
+				lis.Add(col.gameObject);
+				Debug.Log("Added Object");
+			} else{
+				Debug.Log("Already in targets");
 			}
 
 		}
@@ -62,6 +58,30 @@ public class HitBox : MonoBehaviour{
 	public void setType(Type t){
 		this.type = t;
 	}
+
+	public GameObject getNearest(){
+		GameObject ret = null;
+		float mindist = float.MaxValue;
+		foreach(GameObject o in lis){
+ 			float dist = Vector3.Distance(o.transform.position, transform.parent.position);
+			if(dist < mindist){
+				mindist = dist;
+				ret = o;
+			}
+		}
+		return ret;
+	}
+
+	private bool isType(AbstractInteractable t){
+		if (t != null) {
+			if (t.GetType().GetInterfaces().Contains(type)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+
 
 
 }

@@ -7,28 +7,49 @@ using System;
 public class playerModel : MonoBehaviour {
 
 	public int speed = 10;
-	public int visionRange = 25;
-	public int visionWidth = 10;
-
-	public int weaponRange = 5;
-	public int weaponWidth = 10;
-
 
 	//private Weapon equipedWeapon;
 
-	private HitBox vision;
-	private HitBox range;
-	private HitBox reach;
+	public HitBox vision;
+	public HitBox range;
+	public HitBox reach;
+
+	public List<GameObject> inventory =  new List <GameObject> ();
 
 
 	void Awake(){
-		
+
 		vision = transform.Find("Vision").GetComponent<HitBox>();
 		vision.setType(typeof(Visible));
 		range = transform.Find("Range").GetComponent<HitBox>();
 		range.setType(typeof(Targetable));
 		reach = transform.Find("Reach").GetComponent<HitBox>();
 		reach.setType(typeof(Interactable));
+
+	}
+
+
+	public void Move(float dx, float dy, int speed){
+        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+        Transform t = this.transform;
+
+        if(Math.Abs(dx) >= 1 || Math.Abs(dy) >= 1){
+			Vector3 dir;
+			if(Math.Abs(dx) >= 1 && Math.Abs(dy) >= 1){
+				float pos_x = (float)(Math.Sign(dx)*Math.Sqrt(1f/2f));
+				float pos_y = (float)(Math.Sign(dy)*Math.Sqrt(1f/2f));
+				dir = new Vector3(pos_x, pos_y,0) * Time.deltaTime * speed;
+			} else{
+				dir = new Vector3(dx,dy,0) * Time.deltaTime * speed;
+			}
+
+			//move rb
+			rb.MovePosition(this.transform.position + dir);
+
+			//face towards
+			dir.Normalize();
+		 	this.transform.right = dir;
+		}
 
 	}
 
