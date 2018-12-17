@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stat {
-	private int val = 0;
+	private int val;
+	
+	public int Val
+	{
+	   get { return getVal();}
+	   set { val = value; }
+   	}
+
 	private int max = -1;
 
-	private List<Modifier> modifiers;
+	private List<Modifier> modifiers = new List<Modifier>();
 
 	public Stat(int val){
 		this.val = val;
@@ -19,17 +26,18 @@ public class Stat {
 	}
 
 	public int getVal(){
-		int base = val;
+
+		int bas = this.val;
 		foreach(Modifier m in modifiers){
-			if(!m.isExpired()){
-				base = m.modify(base);
+			if(!m.IsExpired()){
+				bas = m.Modify(bas);
 			}
 			else{
 				RemoveModifier(m);
 			}
 		}
 
-		return base;
+		return bas;
 	}
 
 	public int getRawVal(){
@@ -49,7 +57,7 @@ public class Stat {
 	}
 
 	public void AddModifier(Modifier m){
-		m.init(this);
+		m.Init(this);
 		modifiers.Add(m);
 	}
 

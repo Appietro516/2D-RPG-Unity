@@ -5,8 +5,14 @@ using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class playerModel : MonoBehaviour {
+	//used to inits
+	public int speedInt;
 
-	public int speed = 10;
+	[SerializeField()]
+	private int effectiveSpeed;
+
+	public Stat speed;
+
 
 	//private Weapon equipedWeapon;
 
@@ -14,10 +20,13 @@ public class playerModel : MonoBehaviour {
 	public HitBox range;
 	public HitBox reach;
 
-	public List<GameObject> inventory =  new List <GameObject> ();
+	public List<Item> inventory =  new List <Item> ();
 
 
 	void Awake(){
+		speed = new Stat(speedInt);
+		Modifier m = new Modifier(2, Modifier.Multiply);
+		speed.AddModifier(m);
 
 		vision = transform.Find("Vision").GetComponent<HitBox>();
 		vision.setType(typeof(Visible));
@@ -55,6 +64,7 @@ public class playerModel : MonoBehaviour {
 
 
 	void Update(){
+		effectiveSpeed = speed.Val;
 
 	}
 
