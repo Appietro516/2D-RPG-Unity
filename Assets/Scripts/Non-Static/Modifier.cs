@@ -1,35 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Modifier {
-	private Stat stat = null;
-	private int duration = -1;
-	private int magnitude;
+[CreateAssetMenu]
+public class Modifier : ScriptableObject {
 
-	public delegate int Operation(int stat, int modifer);
-	public Operation statfx;
+	public int duration = -1;
+	public int magnitude;
 
-	private float initTime;
+	[System.Serializable]
+ 	public class effect : UnityEvent <int, int>{ }
 
-	public Modifier(int magnitude, Operation statfx, int duration = -1){
-		initTime = Time.time;
-		this.statfx = statfx;
-		this.duration = duration;
-		this.magnitude = magnitude;
-	}
+	[SerializeField()]
+	public effect statfx;
 
-	public void Init (Stat stat) {
-		this.stat = stat;
-	}
+	private float initTime = -1;
+	private int ret;
+
+
 
 	public int Modify (int curr) {
-		return statfx(curr, magnitude);
+		if (initTime == -1){
+			initTime = Time.time;
+		}
+		statfx.Invoke(curr, magnitude);
+		return ret;
 	}
 
 	public bool IsExpired() {
 		if (duration != -1){
-			return (initTime + duration > Time.time);
+			return (initTime + duration <= Time.time);
 		}
 		else{
 			return false;
@@ -37,8 +38,8 @@ public class Modifier {
 
 	}
 
-	public static int Multiply(int a, int b){
-		return a*b;
+	public void Multiply(int a, int b){
+		this.ret = a*b;
 	}
 
 

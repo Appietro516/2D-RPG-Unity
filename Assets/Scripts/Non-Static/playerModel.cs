@@ -21,12 +21,12 @@ public class playerModel : MonoBehaviour {
 	public HitBox reach;
 
 	public List<Item> inventory =  new List <Item> ();
+	public Modifier M;
 
 
 	void Awake(){
 		speed = new Stat(speedInt);
-		Modifier m = new Modifier(2, Modifier.Multiply);
-		speed.AddModifier(m);
+		speed.AddModifier(M);
 
 		vision = transform.Find("Vision").GetComponent<HitBox>();
 		vision.setType(typeof(Visible));

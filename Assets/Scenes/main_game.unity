@@ -717,10 +717,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedInt: 10
+  effectiveSpeed: 0
   vision: {fileID: 0}
   range: {fileID: 0}
   reach: {fileID: 0}
   inventory: []
+  m: {fileID: 11400000, guid: f82aa77afb2e39d408e9290171195a86, type: 2}
 --- !u!61 &1614030997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -757,9 +759,9 @@ GameObject:
   - component: {fileID: 1723093555}
   - component: {fileID: 1723093554}
   - component: {fileID: 1723093558}
-  - component: {fileID: 1723093559}
+  - component: {fileID: 1723093557}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,6 +854,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723093557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723093553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7edb44f3be342b4f9e2f3c578940850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
 --- !u!50 &1723093558
 Rigidbody2D:
   serializedVersion: 4
@@ -872,19 +886,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1723093559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1723093553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1ef6992e34e1f4a91e4cc0cac22491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemName: Test
-  description: test item
 --- !u!1 &1878613641
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,32 +962,4 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2044877901
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2044877902}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2044877902
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2044877901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -0.00000047683716, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Stat {
 	private int val;
-	
+
 	public int Val
 	{
 	   get { return getVal();}
@@ -28,12 +29,17 @@ public class Stat {
 	public int getVal(){
 
 		int bas = this.val;
-		foreach(Modifier m in modifiers){
-			if(!m.IsExpired()){
-				bas = m.Modify(bas);
-			}
-			else{
-				RemoveModifier(m);
+		if (modifiers.Count >= 1){
+			for(int i = 0; i < modifiers.Count; i++){
+				Modifier m = modifiers[i];
+
+				if(!m.IsExpired()){
+					bas = m.Modify(bas);
+				}
+				else{
+					RemoveModifier(m);
+					i--;
+				}
 			}
 		}
 
@@ -57,7 +63,6 @@ public class Stat {
 	}
 
 	public void AddModifier(Modifier m){
-		m.Init(this);
 		modifiers.Add(m);
 	}
 
