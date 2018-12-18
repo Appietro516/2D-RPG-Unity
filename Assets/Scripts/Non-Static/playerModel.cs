@@ -5,14 +5,7 @@ using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class playerModel : MonoBehaviour {
-	//used to inits
-	public int speedInt;
-
-	[SerializeField()]
-	private int effectiveSpeed;
-
-	public Stat speed;
-
+	public Stats stats;
 
 	//private Weapon equipedWeapon;
 
@@ -21,12 +14,9 @@ public class playerModel : MonoBehaviour {
 	public HitBox reach;
 
 	public List<Item> inventory =  new List <Item> ();
-	public Modifier M;
-
 
 	void Awake(){
-		speed = new Stat(speedInt);
-		speed.AddModifier(M);
+		stats = GetComponent<Stats>();
 
 		vision = transform.Find("Vision").GetComponent<HitBox>();
 		vision.setType(typeof(Visible));
@@ -64,7 +54,6 @@ public class playerModel : MonoBehaviour {
 
 
 	void Update(){
-		effectiveSpeed = speed.Val;
 
 	}
 

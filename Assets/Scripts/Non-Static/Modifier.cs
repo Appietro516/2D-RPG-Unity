@@ -42,6 +42,10 @@ public class Modifier : ScriptableObject {
 		this.ret = a*b;
 	}
 
+	public void Add(int a, int b){
+		this.ret = a + b;
+	}
+
 
 
 

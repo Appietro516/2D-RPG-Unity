@@ -2,19 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 public class Stat {
+	[Header("Input")]
+	[SerializeField]
+	public string name;
+
+	[SerializeField]
 	private int val;
 
+	[SerializeField]
 	public int Val
 	{
 	   get { return getVal();}
 	   set { val = value; }
    	}
 
-	private int max = -1;
+	public int max = -1;
+	public List<Modifier> modifiers = new List<Modifier>();
 
-	private List<Modifier> modifiers = new List<Modifier>();
+	[Header("Output (DO NOT MODIFY)")]
+
+	public int effectiveValue;
+
+
+	public Stat(){
+
+	}
 
 	public Stat(int val){
 		this.val = val;
@@ -26,8 +40,8 @@ public class Stat {
 
 	}
 
-	public int getVal(){
 
+	public int getVal(){
 		int bas = this.val;
 		if (modifiers.Count >= 1){
 			for(int i = 0; i < modifiers.Count; i++){

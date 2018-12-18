@@ -26,7 +26,7 @@ public class playerControls : MonoBehaviour {
 		float dx = Input.GetAxis("Horizontal");
 		float dy = Input.GetAxis("Vertical");
 
-		model.Move(dx, dy, model.speed.getVal());
+		model.Move(dx, dy, model.stats.getStatVal("Speed"));
 	}
 
 }
