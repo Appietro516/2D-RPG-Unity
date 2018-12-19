@@ -7,8 +7,6 @@ using System.Linq;
 
 [RequireComponent(typeof(Collider2D))]
 public class HitBox : MonoBehaviour{
-	public int width;
-	public int height;
 
 	public List <GameObject> lis = new List <GameObject> ();
 
@@ -21,7 +19,6 @@ public class HitBox : MonoBehaviour{
 
 	void Awake(){
 		box = GetComponent<Collider2D>();
-		setRange(height, width);
 	}
 
 	void setRange(int y, int x){

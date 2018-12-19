@@ -349,6 +349,21 @@ MonoBehaviour:
   width: 5
   height: 5
   lis: []
+--- !u!114 &902149383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b72e8492c88276429c2b5216581e0c2, type: 3}
+  m_Name: GenericItem(Clone)
+  m_EditorClassIdentifier: 
+  itemName: test
+  sprite: {fileID: 0}
+  description: No special functionality
+  amount: 1
 --- !u!1 &1137401685
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +620,8 @@ GameObject:
   - component: {fileID: 1614030992}
   - component: {fileID: 1614030995}
   - component: {fileID: 1614030997}
+  - component: {fileID: 1614030998}
+  - component: {fileID: 1614030999}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -716,13 +733,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfb93e4552e3414c84a0e16387e8eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedInt: 10
-  effectiveSpeed: 0
+  stats: {fileID: 0}
+  inventory: {fileID: 0}
   vision: {fileID: 0}
   range: {fileID: 0}
   reach: {fileID: 0}
-  inventory: []
-  m: {fileID: 11400000, guid: f82aa77afb2e39d408e9290171195a86, type: 2}
 --- !u!61 &1614030997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -748,6 +763,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1614030998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614030991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24501adaf0d26b54f85f975c344d6c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+  - name: Health
+    val: 100
+    max: 100
+    modifiers: []
+    effectiveValue: 0
+  - name: Speed
+    val: 10
+    max: -1
+    modifiers: []
+    effectiveValue: 0
+--- !u!114 &1614030999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614030991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c6d2912f374f349b3a7d8724d9723f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
 --- !u!1 &1723093553
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7edb44f3be342b4f9e2f3c578940850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: []
+  items:
+  - {fileID: 902149383}
 --- !u!50 &1723093558
 Rigidbody2D:
   serializedVersion: 4
@@ -873,7 +923,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1723093553}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

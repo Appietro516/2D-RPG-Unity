@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[ExecuteInEditMode]
 public class ItemContainer : MonoBehaviour{
 
 
 	public List<Item> items =  new List <Item> ();
-    public Item test;
+
+	//make a clone of the template in editor
+    void OnValidate(){
+		for (int i = 0; i < items.Count; i++){
+            if(items[i] != null && !items[i].name.Contains("Clone")){
+                items[i] = Instantiate(items[i]);
+            }
+        }
+    }
 
 
     public void addItems(ItemContainer other){
@@ -21,7 +30,7 @@ public class ItemContainer : MonoBehaviour{
 
     public void addItem(Item item1, int amt){
         foreach(Item item2 in this.items){
-            if (item1.ID == item2.ID){
+            if (item1.name == item2.name){
                 item2.amount += amt;
                 return;
             }
@@ -29,6 +38,11 @@ public class ItemContainer : MonoBehaviour{
         this.items.Add(item1);
 
     }
+
+	public void cloneTemplate(Item item){
+		item = Instantiate(item);
+		addItem(item, item.amount);
+	}
 
 
 
