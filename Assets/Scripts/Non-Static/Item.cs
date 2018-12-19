@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[CreateAssetMenu]
-public class Item : ScriptableObject{
+[System.Serializable]
+public class Item {
+	public String name;
 
-	public String ItemName;
+	public int ID;
+	public int amount;
 	public Sprite sprite;
 	public String description;
 

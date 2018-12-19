@@ -6,9 +6,7 @@ using System;
 public class InteractableContainer : ItemContainer, Interactable {
 
     public void Interact(playerModel model){
-        foreach(Item item in this.inventory){
-            model.inventory.Add(item);
-        }
+        model.inventory.addItems(this);
         Destroy(this.gameObject);
 
     }

@@ -4,8 +4,11 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Stats))]
+[RequireComponent(typeof(ItemContainer))]
 public class playerModel : MonoBehaviour {
 	public Stats stats;
+	public ItemContainer inventory;
 
 	//private Weapon equipedWeapon;
 
@@ -13,10 +16,9 @@ public class playerModel : MonoBehaviour {
 	public HitBox range;
 	public HitBox reach;
 
-	public List<Item> inventory =  new List <Item> ();
-
 	void Awake(){
 		stats = GetComponent<Stats>();
+		inventory = GetComponent<ItemContainer>();
 
 		vision = transform.Find("Vision").GetComponent<HitBox>();
 		vision.setType(typeof(Visible));
