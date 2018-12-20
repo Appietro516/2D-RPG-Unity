@@ -19,6 +19,8 @@ public class HitBox : MonoBehaviour{
 
 	void Awake(){
 		box = GetComponent<Collider2D>();
+		SpriteRenderer s = GetComponent<SpriteRenderer>();
+		//s.enabled = false;
 	}
 
 	void setRange(int y, int x){

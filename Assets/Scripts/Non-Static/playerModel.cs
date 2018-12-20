@@ -15,8 +15,12 @@ public class playerModel : MonoBehaviour {
 	public HitBox vision;
 	public HitBox range;
 	public HitBox reach;
+	Rigidbody2D rb;
+	Transform t;
 
 	void Awake(){
+		t = this.transform;
+		rb = GetComponent<Rigidbody2D>();
 		stats = GetComponent<Stats>();
 		inventory = GetComponent<ItemContainer>();
 
@@ -31,9 +35,6 @@ public class playerModel : MonoBehaviour {
 
 
 	public void Move(float dx, float dy, int speed){
-        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
-        Transform t = this.transform;
-
         if(Math.Abs(dx) >= 1 || Math.Abs(dy) >= 1){
 			Vector3 dir;
 			if(Math.Abs(dx) >= 1 && Math.Abs(dy) >= 1){
@@ -44,7 +45,8 @@ public class playerModel : MonoBehaviour {
 				dir = new Vector3(dx,dy,0) * Time.deltaTime * speed;
 			}
 
-			//move rb
+			//RB moveposition produced lag
+			//t.position += dir;
 			rb.MovePosition(this.transform.position + dir);
 
 			//face towards
