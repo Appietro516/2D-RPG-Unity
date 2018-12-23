@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(playerModel))]
+[RequireComponent(typeof(Humanoid))]
 public class playerControls : MonoBehaviour {
 
-	private playerModel model;
+	private Humanoid model;
 
 	void Awake(){
-		model = GetComponent<playerModel>();
+		model = GetComponent<Humanoid>();
 	}
 
 	void Update(){
 		if (Input.GetKeyDown("space")){
 			if (model.reach.getNearest() != null){
 				model.reach.getNearest().GetComponent<Interactable>().Interact(model);
+			}
+			if (model.range.getNearest() != null){
+				model.range.getNearest().GetComponent<Targetable>().RecieveAttack();
 			}
 		}
 

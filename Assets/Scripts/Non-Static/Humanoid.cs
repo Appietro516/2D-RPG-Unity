@@ -6,7 +6,7 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Stats))]
 [RequireComponent(typeof(ItemContainer))]
-public class playerModel : MonoBehaviour {
+public class Humanoid : MonoBehaviour, Targetable {
 	public Stats stats;
 	public ItemContainer inventory;
 
@@ -59,6 +59,10 @@ public class playerModel : MonoBehaviour {
 
 	void Update(){
 
+	}
+
+	public void RecieveAttack(){
+		this.stats.deltaStatVal("Health", -1);
 	}
 
 

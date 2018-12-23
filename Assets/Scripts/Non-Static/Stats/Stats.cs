@@ -42,6 +42,15 @@ public class Stats : MonoBehaviour {
 
     }
 
+    public void deltaStatVal(string name, int delta){
+        foreach(Stat stat in stats){
+            if (stat.name == name){
+                stat.Val += delta;
+            }
+        }
+
+    }
+
     public void Update(){
         foreach(Stat stat in stats){
             stat.effectiveValue = stat.Val;

@@ -30,7 +30,7 @@ public class ItemContainer : MonoBehaviour{
 
     public void addItem(Item item1, int amt){
         foreach(Item item2 in this.items){
-            if (item1.name == item2.name){
+            if (item1.itemName == item2.itemName){
                 item2.amount += amt;
                 return;
             }
@@ -42,6 +42,7 @@ public class ItemContainer : MonoBehaviour{
 	public void cloneTemplate(Item item){
 		item = Instantiate(item);
 		addItem(item, item.amount);
+
 	}
 
 

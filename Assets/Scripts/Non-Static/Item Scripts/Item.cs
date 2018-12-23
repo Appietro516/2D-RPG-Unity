@@ -9,16 +9,7 @@ public class Item: ScriptableObject{
 	public Sprite sprite;
 	public String description;
     public int amount = 1;
+	public GameObject itemData;
 
-    public Item(){
-
-    }
-
-    public Item(Item bas){
-        this.itemName = bas.name;
-        this.sprite = bas.sprite;
-        this.description = bas.description;
-        this.amount = bas.amount;
-    }
 
 }

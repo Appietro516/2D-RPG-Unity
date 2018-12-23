@@ -12,6 +12,7 @@ public class HitBox : MonoBehaviour{
 
 	[SerializeField()]
 	public Type type;
+	public bool showHitBox = false;
 
 	private Collider2D box;
 
@@ -20,7 +21,7 @@ public class HitBox : MonoBehaviour{
 	void Awake(){
 		box = GetComponent<Collider2D>();
 		SpriteRenderer s = GetComponent<SpriteRenderer>();
-		//s.enabled = false;
+		s.enabled = showHitBox;
 	}
 
 	void setRange(int y, int x){
