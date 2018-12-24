@@ -36,28 +36,39 @@ public class Humanoid : MonoBehaviour, Targetable, Visible {
 
 	public void Move(float dx, float dy, int speed){
         if(Math.Abs(dx) >= 1 || Math.Abs(dy) >= 1){
+			
+			if (Math.Abs(dx) >= 1){
+				dx = Math.Sign(dx);
+			} else{
+				dx = 0;
+			}
+
+			if (Math.Abs(dy) >= 1){
+				dy = Math.Sign(dy);
+			} else{
+				dy = 0;
+			}
+
 			Vector3 dir;
 			if(Math.Abs(dx) >= 1 && Math.Abs(dy) >= 1){
 				float pos_x = (float)(Math.Sign(dx)*Math.Sqrt(1f/2f));
 				float pos_y = (float)(Math.Sign(dy)*Math.Sqrt(1f/2f));
 				dir = new Vector3(pos_x, pos_y,0) * Time.deltaTime * speed;
 			} else{
-				dir = new Vector3(dx,dy,0) * Time.deltaTime * speed;
+				dir = new Vector3(Math.Sign(dx),Math.Sign(dy),0) * Time.deltaTime * speed;
 			}
-
+			print(dir);
 			//RB moveposition produced lag
 			//t.position += dir;
 			rb.MovePosition(this.transform.position + dir);
 
 			//face towards
-			dir.Normalize();
-		 	this.transform.right = dir;
+			lookAt(dir);
 		}
 
 	}
 
-	public void lookAt(Vector3 pos){
-		Vector3 dir = pos - this.transform.position;
+	public void lookAt(Vector3 dir){
 
 		dir.Normalize();
 		this.transform.right = dir;
