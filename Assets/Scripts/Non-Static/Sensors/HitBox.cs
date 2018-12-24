@@ -10,7 +10,7 @@ public class HitBox : MonoBehaviour{
 
 	public List <GameObject> lis = new List <GameObject> ();
 
-	[SerializeField()]
+	[SerializeField]
 	public Type type;
 	public bool showHitBox = false;
 
@@ -38,7 +38,7 @@ public class HitBox : MonoBehaviour{
 	void OnTriggerExit2D (Collider2D col) {
 		if (isType((col.gameObject.GetComponent<AbstractInteractable>()))){
 			lis.Remove(col.gameObject);
-			print("removed obj");
+			//print(this.gameObject.transform.parent.name + " Removed " + type);
 		}
 	}
 
@@ -46,9 +46,9 @@ public class HitBox : MonoBehaviour{
 		if(isType(col.gameObject.GetComponent<AbstractInteractable>())){
 			if(!(lis.Contains(col.gameObject))){
 				lis.Add(col.gameObject);
-				Debug.Log("Added Object");
+				//Debug.Log(this.gameObject.transform.parent.name + " Detected " + type);
 			} else{
-				Debug.Log("Already in targets");
+				//Debug.Log(this.gameObject.transform.parent.name + " Attempted to add " + type + " more than once");
 			}
 
 		}

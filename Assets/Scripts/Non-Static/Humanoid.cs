@@ -6,7 +6,7 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Stats))]
 [RequireComponent(typeof(ItemContainer))]
-public class Humanoid : MonoBehaviour, Targetable {
+public class Humanoid : MonoBehaviour, Targetable, Visible {
 	public Stats stats;
 	public ItemContainer inventory;
 
@@ -56,13 +56,24 @@ public class Humanoid : MonoBehaviour, Targetable {
 
 	}
 
+	public void lookAt(Vector3 pos){
+		Vector3 dir = pos - this.transform.position;
+
+		dir.Normalize();
+		this.transform.right = dir;
+	}
+
 
 	void Update(){
+		if(stats.getStatVal("Health") <= 0){
+			//teardown();
+			Destroy(this.gameObject);
+		}
 
 	}
 
 	public void RecieveAttack(){
-		this.stats.deltaStatVal("Health", -1);
+		this.stats.deltaStatVal("Health", -20);
 	}
 
 

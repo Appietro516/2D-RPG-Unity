@@ -7,45 +7,28 @@ using System;
 public class ItemContainer : MonoBehaviour{
 
 
-	public List<Item> items =  new List <Item> ();
-
-	//make a clone of the template in editor
-    void OnValidate(){
-		for (int i = 0; i < items.Count; i++){
-            if(items[i] != null && !items[i].name.Contains("Clone")){
-                items[i] = Instantiate(items[i]);
-            }
-        }
-    }
+	public List<ItemStack> items =  new List <ItemStack> ();
 
 
     public void addItems(ItemContainer other){
-        foreach(Item item1 in other.items){
-            addItem(item1, item1.amount);
+        foreach(ItemStack item1 in other.items){
+            addItem(item1.item, item1.amount);
         }
 
-        other.items = new List<Item>();
+        other.items = new List<ItemStack>();
 
     }
 
     public void addItem(Item item1, int amt){
-        foreach(Item item2 in this.items){
-            if (item1.itemName == item2.itemName){
+        foreach(ItemStack item2 in this.items){
+            if (item1.itemName == item2.item.itemName){
                 item2.amount += amt;
                 return;
             }
         }
-        this.items.Add(item1);
+        this.items.Add(new ItemStack(item1, amt));
 
     }
-
-	public void cloneTemplate(Item item){
-		item = Instantiate(item);
-		addItem(item, item.amount);
-
-	}
-
-
 
 
 

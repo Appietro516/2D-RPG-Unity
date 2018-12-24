@@ -17,7 +17,7 @@ public class playerControls : MonoBehaviour {
 			if (model.reach.getNearest() != null){
 				model.reach.getNearest().GetComponent<Interactable>().Interact(model);
 			}
-			if (model.range.getNearest() != null){
+			else if (model.range.getNearest() != null){
 				model.range.getNearest().GetComponent<Targetable>().RecieveAttack();
 			}
 		}
