@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class AIController : MonoBehaviour {
 
@@ -11,15 +10,9 @@ public class AIController : MonoBehaviour {
 		model = GetComponent<Humanoid>();
 	}
 
-	void FixedUpdate(){
+	void Update(){
 		if (model.vision.getNearest() != null){
-			Vector3 dir = model.vision.getNearest().transform.position - this.transform.position;
-			//model.lookAt(dir);
-			if(model.range.getNearest() == null){
-				//print(dir);
-				model.Move(dir.x,dir.y, model.stats.getStatVal("Speed"));
-
-			}
+			model.lookAt(model.vision.getNearest().transform.position);
 		}
 
 	}
