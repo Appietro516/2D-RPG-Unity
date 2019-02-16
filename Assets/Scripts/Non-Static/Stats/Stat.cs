@@ -18,23 +18,18 @@ public class Stat {
 	   set { val = value; }
    	}
 
+	[SerializeField]
 	public int max = -1;
+
+	[SerializeField]
 	public List<Modifier> modifiers = new List<Modifier>();
-
-	[Header("Output (DO NOT MODIFY)")]
-
-	public int effectiveValue;
-
-
-	public Stat(){
-
-	}
 
 	public Stat(int val){
 		this.val = val;
 	}
 
-	public Stat(int val, int max){
+	public Stat(string name = "", int val = 1, int max  = -1){
+		this.name = name;
 		this.val = val;
 		this.max = max;
 

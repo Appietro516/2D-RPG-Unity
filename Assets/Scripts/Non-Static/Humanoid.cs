@@ -1,19 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object= System.Object;
 using System;
 
+//TODO
+//remake stats
+//remake modifier
+//make action handler and controller for Basic AI human.
+
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Stats))]
-[RequireComponent(typeof(ItemContainer))]
-public class Humanoid : MonoBehaviour, Targetable, Visible {
+public class Humanoid : MonoBehaviour, Targetable, Visible, ISavable, Interactable {
+	//serializable stats
 	public Stats stats;
 	public ItemContainer inventory;
-
 	//private Weapon equipedWeapon;
+	//Actioncontroller
+	//AcrionHandler
 
+	[SerializeField]
+	private string prefab;
+
+	//non-serializable stats
+	[NonSerialized]
 	public HitBox vision;
+	[NonSerialized]
 	public HitBox range;
+	[NonSerialized]
 	public HitBox reach;
 	Rigidbody2D rb;
 	Transform t;
@@ -21,8 +34,6 @@ public class Humanoid : MonoBehaviour, Targetable, Visible {
 	void Awake(){
 		t = this.transform;
 		rb = GetComponent<Rigidbody2D>();
-		stats = GetComponent<Stats>();
-		inventory = GetComponent<ItemContainer>();
 
 		vision = transform.Find("Vision").GetComponent<HitBox>();
 		vision.setType(typeof(Visible));
@@ -35,6 +46,21 @@ public class Humanoid : MonoBehaviour, Targetable, Visible {
 
 
 	public void Move(float dx, float dy, int speed){
+
+		if (Math.Abs(dx) >= .5){
+			dx = 1 * Math.Sign(dx);
+		}
+		else{
+			dx = 0;
+		}
+
+		if (Math.Abs(dy) >= .5){
+			dy = 1 * Math.Sign(dy);
+		}
+		else{
+			dy = 0;
+		}
+		//print("DX: " + dx + " DY:" + dy);
         if(Math.Abs(dx) >= 1 || Math.Abs(dy) >= 1){
 			Vector3 dir;
 			if(Math.Abs(dx) >= 1 && Math.Abs(dy) >= 1){
@@ -54,6 +80,11 @@ public class Humanoid : MonoBehaviour, Targetable, Visible {
 		 	this.transform.right = dir;
 		}
 
+	}
+
+	public void MoveTo(Transform o){
+		Vector3 dir = o.position - this.transform.position;
+		Move(dir.x, dir.y, stats.getStatVal("Speed"));
 	}
 
 	public void lookAt(Vector3 pos){
@@ -76,6 +107,13 @@ public class Humanoid : MonoBehaviour, Targetable, Visible {
 		this.stats.deltaStatVal("Health", -20);
 	}
 
+	public string getPrefab(){
+		return this.prefab;
+	}
+
+	public void Interact(Humanoid h){
+
+	}
 
 
 

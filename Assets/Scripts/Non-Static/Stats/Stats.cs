@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Stats{
 
-public class Stats : MonoBehaviour {
-
+    [SerializeField]
     public List<Stat> stats;
+    [SerializeField]
+    Stat test;
 
 
     public Stat getStat(string name){
@@ -17,7 +20,7 @@ public class Stats : MonoBehaviour {
         return null;
     }
     public int getStatVal(string name){
-        foreach(Stat stat in stats){
+        foreach(Stat stat in this.stats){
             if (stat.name == name){
                 if (stat.Val > 0){
                     return stat.Val;
@@ -51,9 +54,4 @@ public class Stats : MonoBehaviour {
 
     }
 
-    public void Update(){
-        foreach(Stat stat in stats){
-            stat.effectiveValue = stat.Val;
-        }
-    }
 }

@@ -11,7 +11,8 @@ public class CameraFollow : MonoBehaviour {
 		cam = Camera.main.transform;
 	}
 	void Update(){
-		cam.position = new Vector3(follow.position.x, follow.position.y, cam.position.z);
+		if (follow != null)
+			cam.position = new Vector3(follow.position.x, follow.position.y, cam.position.z);
 
 	}
 

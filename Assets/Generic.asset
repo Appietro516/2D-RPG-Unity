@@ -9,15 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f6c7f2a46c0ef5458d8cbd0937aced0, type: 3}
-  m_Name: GenericModifer
+  m_Name: Generic
   m_EditorClassIdentifier: 
   duration: -1
-  magnitude: 2
+  magnitude: 50
   statfx:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000}
-        m_MethodName: Multiply
+        m_MethodName: Add
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

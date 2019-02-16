@@ -8,7 +8,5 @@ public class Item: ScriptableObject{
 	public String itemName;
 	public Sprite sprite;
 	public String description;
-	public GameObject itemData;
-
-
+    public int amount = 1;
 }

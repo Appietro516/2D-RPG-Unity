@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b72e8492c88276429c2b5216581e0c2, type: 3}
   m_Name: GenericItem
   m_EditorClassIdentifier: 
-  itemName: test
+  itemName: 
   sprite: {fileID: 0}
-  description: No special functionality
+  description: 
   amount: 1
